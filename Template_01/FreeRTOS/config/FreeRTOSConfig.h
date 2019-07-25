@@ -30,7 +30,7 @@
 #define FREERTOS_CONFIG_H
 
 #include "stm32f4xx.h"
-#include "usart.h"
+#include "..\BSP\inc\bsp_usart1.h"
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
