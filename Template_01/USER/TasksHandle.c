@@ -55,10 +55,11 @@ static void LED1_Task(void)
 {
     while(1)
     {
-        LED_RED_ON();
+//        LED_RED_ON();
+//        vTaskDelay(500);
+//        LED_RED_OFF();
         vTaskDelay(500);
-        LED_RED_OFF();
-        vTaskDelay(500);
+        printf("LED1_Task\r\n");
     }
 }
 
@@ -66,9 +67,10 @@ static void LED2_Task(void)
 {
     while(1)
     {
-        LED_GREEN_ON();
-        vTaskDelay(1000);
-        LED_GREEN_OFF();
-        vTaskDelay(1000);
+//        LED_GREEN_ON();
+//        vTaskDelay(1000);
+//        LED_GREEN_OFF();
+        vTaskDelay(500);
+        printf("LED2_Task\r\n");
     }
 }
