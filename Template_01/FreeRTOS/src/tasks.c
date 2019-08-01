@@ -1982,8 +1982,7 @@ void vTaskStartScheduler( void )
     }
 #else
     {
-        /* The Idle task is being created using dynamically allocated RAM. */
-        xReturn = xTaskCreate(	prvIdleTask,
+        xReturn = xTaskCreate(	prvIdleTask,									//使用动态方式创建空闲任务
                                 configIDLE_TASK_NAME,
                                 configMINIMAL_STACK_SIZE,
                                 ( void * ) NULL,
@@ -1994,9 +1993,9 @@ void vTaskStartScheduler( void )
 
 #if ( configUSE_TIMERS == 1 )
     {
-        if( xReturn == pdPASS )
+        if( xReturn == pdPASS )													//如果idle task任务创建成功
         {
-            xReturn = xTimerCreateTimerTask();
+            xReturn = xTimerCreateTimerTask();									//创建定时器任务
         }
         else
         {
@@ -2005,7 +2004,7 @@ void vTaskStartScheduler( void )
     }
 #endif /* configUSE_TIMERS */
 
-    if( xReturn == pdPASS )
+    if( xReturn == pdPASS )														//如果idle task和timer task创建成功
     {
         /* freertos_tasks_c_additions_init() should only be called if the user
         definable macro FREERTOS_TASKS_C_ADDITIONS_INIT() is defined, as that is
@@ -2057,7 +2056,7 @@ void vTaskStartScheduler( void )
             /* Should only reach here if a task calls xTaskEndScheduler(). */
         }
     }
-    else
+    else																		//如果idle task和timer task创建失败
     {
         /* This line will only be reached if the kernel could not be started,
         because there was not enough FreeRTOS heap to create the idle task
