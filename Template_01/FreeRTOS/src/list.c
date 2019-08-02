@@ -190,7 +190,7 @@ UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove )
     }
 
     pxItemToRemove->pxContainer = NULL;
-    ( pxList->uxNumberOfItems )--;
+    ( pxList->uxNumberOfItems )--;										//节点个数减一
 
     return pxList->uxNumberOfItems;
 }

@@ -86,7 +86,7 @@ to exclude the API function. */
 #define INCLUDE_uxTaskPriorityGet		1
 #define INCLUDE_vTaskDelete				1
 #define INCLUDE_vTaskCleanUpResources	1
-#define INCLUDE_vTaskSuspend			1
+#define INCLUDE_vTaskSuspend			1										//包含任务挂起相关API
 #define INCLUDE_vTaskDelayUntil			1
 #define INCLUDE_vTaskDelay				1
 

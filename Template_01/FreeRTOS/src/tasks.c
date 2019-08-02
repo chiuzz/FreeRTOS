@@ -112,14 +112,13 @@ configIDLE_TASK_NAME in FreeRTOSConfig.h. */
 #define configIDLE_TASK_NAME "IDLE"
 #endif
 
-#if ( configUSE_PORT_OPTIMISED_TASK_SELECTION == 0 )
+#if ( configUSE_PORT_OPTIMISED_TASK_SELECTION == 0 )															//查找最高优先级的就绪任务:通用方法
 
 /* If configUSE_PORT_OPTIMISED_TASK_SELECTION is 0 then task selection is
 performed in a generic way that is not optimised to any particular
 microcontroller architecture. */
 
-/* uxTopReadyPriority holds the priority of the highest priority ready
-state task. */
+/* uxTopReadyPriority 保存了就绪态最高优先级任务的优先级. */
 #define taskRECORD_READY_PRIORITY( uxPriority )														\
 	{																									\
 		if( ( uxPriority ) > uxTopReadyPriority )														\
@@ -1676,17 +1675,15 @@ void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority )
 #endif /* INCLUDE_vTaskPrioritySet */
 /*-----------------------------------------------------------*/
 
-#if ( INCLUDE_vTaskSuspend == 1 )
+#if ( INCLUDE_vTaskSuspend == 1 )												//包含任务挂起相关API
 
-void vTaskSuspend( TaskHandle_t xTaskToSuspend )
+void vTaskSuspend( TaskHandle_t xTaskToSuspend )								//挂起任务函数
 {
     TCB_t *pxTCB;
 
-    taskENTER_CRITICAL();
+    taskENTER_CRITICAL();														//临界段保护
     {
-        /* If null is passed in here then it is the running task that is
-        being suspended. */
-        pxTCB = prvGetTCBFromHandle( xTaskToSuspend );
+        pxTCB = prvGetTCBFromHandle( xTaskToSuspend );							//如果这里传入NULL则代表挂起当前任务，否则代表挂起指定任务
 
         traceTASK_SUSPEND( pxTCB );
 
